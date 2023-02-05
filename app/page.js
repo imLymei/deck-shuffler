@@ -179,8 +179,53 @@ export default function Home() {
 				</h2>
 			</div>
 			<div className='fixed left-6 top-[50%] -translate-y-[50%] flex flex-col gap-4'>
+				<div className='border border-white bg-black/50 p-2 w-[80px]'>
+					<h2>Selected</h2>
+					<div className='h-12'>
+						{selected.map((e) => {
+							let suit = null;
+
+							switch (cardDeck[e].suit) {
+								case 'hearts':
+									suit = <BsFillSuitHeartFill className='relative bottom-[-0.35rem]' />;
+									break;
+
+								case 'diamonds':
+									suit = <BsFillSuitDiamondFill className='relative bottom-[-0.35rem]' />;
+									break;
+
+								case 'spades':
+									suit = <BsFillSuitSpadeFill className='relative bottom-[-0.35rem]' />;
+									break;
+
+								case 'clubs':
+									suit = <BsFillSuitClubFill className='relative bottom-[-0.35rem]' />;
+									break;
+							}
+
+							return (
+								<div
+									key={e}
+									className={`${
+										cardDeck[e].suit == 'hearts'
+											? 'text-red-500'
+											: cardDeck[e].suit == 'diamonds'
+											? 'text-red-500'
+											: cardDeck[e].suit == 'spades'
+											? 'text-blue-500'
+											: cardDeck[e].suit == 'clubs'
+											? 'text-blue-500'
+											: ''
+									} flex gap-2`}>
+									<h2>{cardDeck[e].card}</h2>
+									{suit}
+								</div>
+							);
+						})}
+					</div>
+				</div>
 				<h2
-					className='bg-black/60 border border-white p-2 cursor-pointer w-[80px] text-center'
+					className='bg-black/60 border border-white p-2 cursor-pointer w-[80px] text-center hover:scale-105 transition-transform'
 					onClick={() => {
 						if (selected.length == 2) {
 							swapCards(selected[0], selected[1]);
@@ -190,48 +235,15 @@ export default function Home() {
 					Swap cards
 				</h2>
 				<h2
-					className='bg-black/60 border border-white p-2 cursor-pointer w-[80px] text-center'
+					className='bg-black/60 border border-white p-2 cursor-pointer w-[80px] text-center hover:scale-105 transition-transform'
 					onClick={() => {
 						splitCards();
 					}}>
 					Move to bottom
 				</h2>
 				<div className='flex flex-col gap-4'>
-					<div>
-						<h2>Selected:</h2>
-						<div>
-							{selected.map((e) => {
-								let suit = null;
-
-								switch (cardDeck[e].suit) {
-									case 'hearts':
-										suit = <BsFillSuitHeartFill className='relative bottom-[-0.35rem]' />;
-										break;
-
-									case 'diamonds':
-										suit = <BsFillSuitDiamondFill className='relative bottom-[-0.35rem]' />;
-										break;
-
-									case 'spades':
-										suit = <BsFillSuitSpadeFill className='relative bottom-[-0.35rem]' />;
-										break;
-
-									case 'clubs':
-										suit = <BsFillSuitClubFill className='relative bottom-[-0.35rem]' />;
-										break;
-								}
-
-								return (
-									<div key={e} className='flex gap-2'>
-										<h2 className=''>{cardDeck[e].card}</h2>
-										{suit}
-									</div>
-								);
-							})}
-						</div>
-					</div>
 					<h2
-						className='bg-black/60 border border-white p-2 cursor-pointer w-[80px] text-center'
+						className='bg-black/60 border border-white p-2 cursor-pointer w-[80px] text-center hover:scale-105 transition-transform'
 						onClick={() => {
 							cardDeck.map((e, index) => {
 								swapCards(index, Math.round(index + Math.random() * 52) % 52);
@@ -241,17 +253,20 @@ export default function Home() {
 						Shuffle deck
 					</h2>
 					<h2
-						className='bg-black/60 border border-white p-2 cursor-pointer w-[80px] text-center'
+						className='bg-black/60 border border-white p-2 cursor-pointer w-[80px] text-center hover:scale-105 transition-transform'
 						onClick={() => {
 							setSelected([]);
 							setCardDeck([...cards]);
 						}}>
 						Reset deck
 					</h2>
-					<h3>{`Shuffle score: ${getScore()}`}</h3>
+					<h3>
+						<span className='text-blue-500'>Shuffle score: </span>
+						{`${getScore()}`}
+					</h3>
 				</div>
 			</div>
-			<div className=''>
+			<div>
 				{cardDeck.map((e, index) => {
 					let suit = null;
 
@@ -286,13 +301,13 @@ export default function Home() {
 									: e.suit == 'clubs'
 									? 'text-blue-500'
 									: ''
-							} cursor-pointer flex text-xs justify-center items-center gap-2 bg-black/60 border border-white p-2 m-2 w-16 h-[0.5rem] ${
+							} cursor-pointer flex text-xs justify-center items-center gap-2 bg-black/60 border p-2 m-2 w-16 h-[0.5rem] transition-transform ${
 								selected[0] == index || selected[1] == index
-									? 'bg-black/60 shadow-lg scale-110 shadow-white/25'
+									? 'shadow-lg scale-[1.15] border-blue-500 shadow-white/50'
 									: (index < selected[0] && index > selected[1]) ||
 									  (index > selected[0] && index < selected[1])
-									? 'scale-105'
-									: ''
+									? 'scale-[1.08] shadow-sm shadow-white/50 border-blue-400'
+									: 'border-white hover:scale-105'
 							}`}
 							onClick={() => {
 								getSelected(index, 2);
