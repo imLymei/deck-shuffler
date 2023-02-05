@@ -10,4 +10,20 @@
 	-ms-user-select: none;
 	-moz-user-select: none;
 	-webkit-user-select: none;
+	-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+	background-image: url('../public/tile.png');
+	animation: bgMotion 2s linear infinite;
+}
+
+@keyframes bgMotion {
+	0% {
+		background-position: 0 0;
+	}
+	100% {
+		background-position: 30px 30px;
+	}
 }

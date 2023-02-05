@@ -162,24 +162,24 @@ export default function Home() {
 	};
 
 	return (
-		<main className='bg-black text-white min-h-screen flex justify-center items-center gap-x-[10vw]'>
+		<main className='text-white min-h-screen flex justify-center items-center gap-x-[10vw]'>
 			<div className='fixed left-6 top-[50%] -translate-y-[50%] flex flex-col gap-4'>
 				<h2
-					className='border border-white p-2 cursor-pointer w-[80px] text-center'
+					className='bg-black/60 border border-white p-2 cursor-pointer w-[80px] text-center'
 					onClick={() => {
 						if (selected.length == 2) {
 							swapCards(selected[0], selected[1]);
 							setCardDeck([...swapDeck]);
 						}
 					}}>
-					swap
+					Swap cards
 				</h2>
 				<h2
-					className='border border-white p-2 cursor-pointer w-[80px] text-center'
+					className='bg-black/60 border border-white p-2 cursor-pointer w-[80px] text-center'
 					onClick={() => {
 						splitCards();
 					}}>
-					split
+					Move to bottom
 				</h2>
 				<div className='flex flex-col gap-4'>
 					<div>
@@ -216,22 +216,22 @@ export default function Home() {
 						</div>
 					</div>
 					<h2
-						className='border border-white p-2 cursor-pointer w-[80px] text-center'
+						className='bg-black/60 border border-white p-2 cursor-pointer w-[80px] text-center'
 						onClick={() => {
 							setSelected([]);
 							setCardDeck([...cards]);
 						}}>
-						reset
+						Reset deck
 					</h2>
 					<h2
-						className='border border-white p-2 cursor-pointer w-[80px] text-center'
+						className='bg-black/60 border border-white p-2 cursor-pointer w-[80px] text-center'
 						onClick={() => {
 							cardDeck.map((e, index) => {
 								swapCards(index, Math.round(index + Math.random() * 52) % 52);
 							});
 							setCardDeck([...swapDeck]);
 						}}>
-						shuffle
+						Shuffle deck
 					</h2>
 					<h3>{`Shuffle score: ${getScore()}`}</h3>
 				</div>
@@ -271,9 +271,9 @@ export default function Home() {
 									: e.suit == 'clubs'
 									? 'text-blue-500'
 									: ''
-							} cursor-pointer flex text-xs justify-center items-center gap-2 bg-neutral-800 border border-white p-2 m-2 w-16 h-[0.5rem] ${
+							} cursor-pointer flex text-xs justify-center items-center gap-2 bg-black/60 border border-white p-2 m-2 w-16 h-[0.5rem] ${
 								selected[0] == index || selected[1] == index
-									? 'bg-white/10 shadow-lg scale-110 shadow-white/25'
+									? 'bg-black/60 shadow-lg scale-110 shadow-white/25'
 									: (index < selected[0] && index > selected[1]) ||
 									  (index > selected[0] && index < selected[1])
 									? 'scale-105'
