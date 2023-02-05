@@ -162,7 +162,22 @@ export default function Home() {
 	};
 
 	return (
-		<main className='text-white min-h-screen flex justify-center items-center gap-x-[10vw]'>
+		<main className='text-white min-h-screen flex flex-col justify-center items-center gap-x-[10vw] mb-8'>
+			<div className='text-sm sm:text-base text-center p-4'>
+				<h2>
+					<span className='text-blue-500'>Swap cards</span>: Select two cards to swap places.
+				</h2>
+				<h2>
+					<span className='text-blue-500'>Move to bottom</span>: Select a pile of cards to put in the bottom
+					of the deck.
+				</h2>
+				<h2>
+					<span className='text-blue-500'>Shuffle deck</span>: Shuffle the deck randomly.
+				</h2>
+				<h2>
+					<span className='text-blue-500'>Reset deck</span>: Reset the position of the deck.
+				</h2>
+			</div>
 			<div className='fixed left-6 top-[50%] -translate-y-[50%] flex flex-col gap-4'>
 				<h2
 					className='bg-black/60 border border-white p-2 cursor-pointer w-[80px] text-center'
@@ -218,20 +233,20 @@ export default function Home() {
 					<h2
 						className='bg-black/60 border border-white p-2 cursor-pointer w-[80px] text-center'
 						onClick={() => {
-							setSelected([]);
-							setCardDeck([...cards]);
-						}}>
-						Reset deck
-					</h2>
-					<h2
-						className='bg-black/60 border border-white p-2 cursor-pointer w-[80px] text-center'
-						onClick={() => {
 							cardDeck.map((e, index) => {
 								swapCards(index, Math.round(index + Math.random() * 52) % 52);
 							});
 							setCardDeck([...swapDeck]);
 						}}>
 						Shuffle deck
+					</h2>
+					<h2
+						className='bg-black/60 border border-white p-2 cursor-pointer w-[80px] text-center'
+						onClick={() => {
+							setSelected([]);
+							setCardDeck([...cards]);
+						}}>
+						Reset deck
 					</h2>
 					<h3>{`Shuffle score: ${getScore()}`}</h3>
 				</div>
