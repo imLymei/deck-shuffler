@@ -17,6 +17,7 @@
 body {
 	background-image: url('../public/tile.png');
 	animation: bgMotion 2s linear infinite;
+	background-attachment: fixed;
 }
 
 @keyframes bgMotion {
