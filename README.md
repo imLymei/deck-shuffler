@@ -1,6 +1,6 @@
 # Deck Shuffler
 
-Deck shuffler made with Next.js and Tailwind CSS with scores depending on the quality of the shuffle.
+Deck shuffler made with Next.js and Tailwind CSS that scores the quality of the shuffled deck.
 
 ## 💻 Frameworks
 
